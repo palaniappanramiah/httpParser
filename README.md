@@ -49,11 +49,11 @@ Example Response:
 ```
 cd httpParser
 ```
-3. Run this in the terminal within the 'httpParser' directory:
+3. Run the below in the terminal within the 'httpParser' directory:
 ```
 curl -X POST -H "Content-Type: text/plain" -d $'HTTP/1.0 200 OK\r\ncache-control: public\r\ncontent-length: 0\r\ncontent-type: image/svg+xml\r\ndate: Tue, 22 Jun 2021 22:24:42 GMT' http://localhost:8080/parser/parse
 ```
-4. This should return
+4. This should return the following
 ```json
 {
   "httpVersion":"1.0",
@@ -66,9 +66,8 @@ curl -X POST -H "Content-Type: text/plain" -d $'HTTP/1.0 200 OK\r\ncache-control
 
 ## Run the Unit Test
 
-1. Make sure Maven is installed locally
-2. Make sure Docker is installed and running locally
-3. Run this in the terminal within the 'Broadcom' directory:
+1. Make sure Maven and Docker is installed and running locally
+2. Run the below in the terminal within the 'httpParser' directory:
 ```
 docker run -it --rm -v $PWD:$PWD -w $PWD -v /var/run/docker.sock:/var/run/docker.sock maven:3.9.0-eclipse-temurin-17 mvn test
 ```
