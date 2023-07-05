@@ -7,12 +7,10 @@ public class HTTPResponse {
     private String httpVersion;
     private int statusCode;
     private String reasonPhrase;
-    private Map<String, String> headers;
     private int validHeaders;
     private int invalidHeaders;
 
     public HTTPResponse() {
-        headers = new HashMap<>();
         validHeaders = 0;
         invalidHeaders = 0;
     }
@@ -39,14 +37,6 @@ public class HTTPResponse {
 
     public void setReasonPhrase(String reasonPhrase) {
         this.reasonPhrase = reasonPhrase;
-    }
-
-    public Map<String, String> getHeaders() {
-        return headers;
-    }
-
-    public void setHeaders(Map<String, String> headers) {
-        this.headers = headers;
     }
 
     public int getValidHeaders() {

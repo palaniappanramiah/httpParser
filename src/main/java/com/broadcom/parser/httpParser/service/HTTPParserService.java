@@ -48,7 +48,6 @@ public class HTTPParserService {
 
         String headerName = headerParts[0].trim();
         String headerValue = headerParts[1].trim();
-        httpResponse.getHeaders().put(headerName, headerValue);
         httpResponse.setValidHeaders(httpResponse.getValidHeaders() + 1);
     }
 }
