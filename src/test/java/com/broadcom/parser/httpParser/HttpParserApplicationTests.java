@@ -24,6 +24,7 @@ class HttpParserApplicationTests {
 
 		assertEquals("1.0", httpResponse.getHttpVersion());
 		assertEquals(200, httpResponse.getStatusCode());
+		assertEquals("OK", httpResponse.getReasonPhrase());
 		assertEquals(4, httpResponse.getValidHeaders());
 		assertEquals(0, httpResponse.getInvalidHeaders());
 	}
@@ -36,6 +37,7 @@ class HttpParserApplicationTests {
 
 		assertNull(httpResponse.getHttpVersion());
 		assertEquals(0, httpResponse.getStatusCode());
+		assertNull(httpResponse.getReasonPhrase());
 		assertEquals(0, httpResponse.getValidHeaders());
 		assertEquals(0, httpResponse.getInvalidHeaders());
 	}
@@ -52,25 +54,27 @@ class HttpParserApplicationTests {
 
 		assertEquals("1.1", httpResponse.getHttpVersion());
 		assertEquals(302, httpResponse.getStatusCode());
+		assertEquals("Found", httpResponse.getReasonPhrase());
 		assertEquals(3, httpResponse.getValidHeaders());
 		assertEquals(1, httpResponse.getInvalidHeaders());
 	}
 
 	@Test
-	public void testMissingStatusLine() {
+	public void testMissingStatusLineInController() {
 		HTTPParserService parser = new HTTPParserService();
-		String response = "";
+		String response = " ";
 		HTTPParserController parserController = new HTTPParserController(parser);
 		HTTPResponse httpResponse = parserController.parse(response);
 
 		assertNull(httpResponse.getHttpVersion());
 		assertEquals(0, httpResponse.getStatusCode());
+		assertNull(httpResponse.getReasonPhrase());
 		assertEquals(0, httpResponse.getValidHeaders());
 		assertEquals(0, httpResponse.getInvalidHeaders());
 	}
 
 	@Test
-	public void testMissingHeaders() {
+	public void testMissingHeadersInController() {
 		HTTPParserService parser = new HTTPParserService();
 		String response = "HTTP/1.1 200 OK";
 		HTTPParserController parserController = new HTTPParserController(parser);
@@ -78,6 +82,7 @@ class HttpParserApplicationTests {
 
 		assertEquals("1.1", httpResponse.getHttpVersion());
 		assertEquals(200, httpResponse.getStatusCode());
+		assertEquals("OK", httpResponse.getReasonPhrase());
 		assertEquals(0, httpResponse.getValidHeaders());
 		assertEquals(0, httpResponse.getInvalidHeaders());
 	}

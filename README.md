@@ -34,24 +34,34 @@ Takes in a raw text string as a payload returns a HTTPResponse JSON object. Plea
 
 Example Response:
 ```json
-{"httpVersion":"1.0","statusCode":200,"reasonPhrase":"OK","headers":{"date":"Tue, 22 Jun 2021 22:24:42 GMT","content-length":"0","content-type":"image/svg+xml","cache-control":"public"},"validHeaders":4,"invalidHeaders":0}
+{
+  "httpVersion":"1.0",
+  "statusCode":200,
+  "reasonPhrase":"OK",
+  "validHeaders":4,
+  "invalidHeaders":0
+}
 ```
 
 ## Test
 1. Clone this repository and run the app.
 2. Open a new terminal and navigate into the project directory:
 ```
-cd Broadcom
+cd httpParser
 ```
-3. Run this in the terminal within the 'Broadcom' directory:
+3. Run this in the terminal within the 'httpParser' directory:
 ```
-curl -X POST -H "Content-Type: text/plain" -d 
-$'HTTP/1.0 200 OK\r\ncache-control: public\r\ncontent-length: 0\r\ncontent-type: image/svg+xml\r\ndate: Tue, 22 Jun 2021 22:24:42 GMT'
-http://localhost:8080/parser/parse
+curl -X POST -H "Content-Type: text/plain" -d $'HTTP/1.0 200 OK\r\ncache-control: public\r\ncontent-length: 0\r\ncontent-type: image/svg+xml\r\ndate: Tue, 22 Jun 2021 22:24:42 GMT' http://localhost:8080/parser/parse
 ```
 4. This should return
 ```json
-{"httpVersion":"1.0","statusCode":200,"reasonPhrase":"OK","headers":{"date":"Tue, 22 Jun 2021 22:24:42 GMT","content-length":"0","content-type":"image/svg+xml","cache-control":"public"},"validHeaders":4,"invalidHeaders":0}
+{
+  "httpVersion":"1.0",
+  "statusCode":200,
+  "reasonPhrase":"OK",
+  "validHeaders":4,
+  "invalidHeaders":0
+}
 ```
 
 ## Run the Unit Test
