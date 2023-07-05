@@ -1,5 +1,6 @@
 package com.broadcom.parser.httpParser;
 
+import com.broadcom.parser.httpParser.controller.HTTPParserController;
 import com.broadcom.parser.httpParser.model.HTTPResponse;
 import com.broadcom.parser.httpParser.service.HTTPParserService;
 import org.junit.jupiter.api.Test;
@@ -59,7 +60,8 @@ class HttpParserApplicationTests {
 	public void testMissingStatusLine() {
 		HTTPParserService parser = new HTTPParserService();
 		String response = "";
-		HTTPResponse httpResponse = parser.parseResponse(response);
+		HTTPParserController parserController = new HTTPParserController(parser);
+		HTTPResponse httpResponse = parserController.parse(response);
 
 		assertNull(httpResponse.getHttpVersion());
 		assertEquals(0, httpResponse.getStatusCode());
@@ -71,7 +73,8 @@ class HttpParserApplicationTests {
 	public void testMissingHeaders() {
 		HTTPParserService parser = new HTTPParserService();
 		String response = "HTTP/1.1 200 OK";
-		HTTPResponse httpResponse = parser.parseResponse(response);
+		HTTPParserController parserController = new HTTPParserController(parser);
+		HTTPResponse httpResponse = parserController.parse(response);
 
 		assertEquals("1.1", httpResponse.getHttpVersion());
 		assertEquals(200, httpResponse.getStatusCode());

@@ -1,8 +1,5 @@
 package com.broadcom.parser.httpParser.model;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class HTTPResponse {
     private String httpVersion;
     private int statusCode;

@@ -23,13 +23,14 @@ public class HTTPParserController {
 
         HTTPResponse response = httpParserService.parseResponse(httpResponse);
 
-        System.out.println("httpVersion    : " + response.getHttpVersion());
-        System.out.println("statusCode     : " + response.getStatusCode());
-        System.out.println("reasonPhrase   : " + response.getReasonPhrase());
-        System.out.println("validHeaders   : " + response.getValidHeaders());
-        System.out.println("invalidHeaders : " + response.getInvalidHeaders());
+        if(response != null) {
+            System.out.println("httpVersion    : " + response.getHttpVersion());
+            System.out.println("statusCode     : " + response.getStatusCode());
+            System.out.println("reasonPhrase   : " + response.getReasonPhrase());
+            System.out.println("validHeaders   : " + response.getValidHeaders());
+            System.out.println("invalidHeaders : " + response.getInvalidHeaders());
+        }
 
         return response;
-
     }
 }
